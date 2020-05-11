@@ -26,8 +26,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
    def update
      user = User.find(params[:id])
-     user.update
-     redirect_to :action => "show"
+     user.update(user_params)
+     redirect_to user_path(@user.id)
    end
 
   # DELETE /resource
@@ -67,8 +67,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   private
-  def profile_image_params
-    params.require(:post_image).permit(:name, :profile_image_id, :introduction)
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction)
 
 
   protected
