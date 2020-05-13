@@ -4,31 +4,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
- before_action :authenticate_user!
-
   # GET /resource/sign_up
-  def new
-     @profile_image = User.new
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
-  def create
-    @profile_image = User.new(post_image_params)
-    @profile_image_id = current_user.id
-    @profile_image.save
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
-   def edit
-     @user = User.find(params[:id])
-   end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
-   def update
-     user = User.find(params[:id])
-     user.update(user_params)
-     redirect_to user_path(@user.id)
-   end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -66,14 +60,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  private
-  def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction)
-
-
-  protected
-
-   def after_update_path_for(resource)
-     user_path(current_user.id)
-   end
 end

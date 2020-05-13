@@ -1,7 +1,6 @@
 <h2>User info</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_for(@user) do |f| %>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -22,7 +21,3 @@
     <%= f.submit "Update User" %>
   </div>
 <% end %>
-
-
-
-<%= link_to "Back", :back %>
