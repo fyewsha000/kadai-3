@@ -10,6 +10,6 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  has_many :Books, dependent: :destroy
+  has_many :books, dependent: :destroy
 
 end

@@ -10,6 +10,7 @@
 <table>
 	<thead>
 		<tr>
+			<th width="70"></th>
 			<th width="150">Title</th>
 			<th width="500">Opinion</th>
 			<th colspan = "3"></th>
@@ -17,10 +18,13 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><%= @book.title %></td>
+            <td><%= attachment_image_tag @book.user, :profile_image, format: 'jpg', size: "40x40", fallback: "no_image.jpg" %>
+                <%= link_to @book.user.name, user_path(@book.user.id) %>
+             </td>
+            <td><%= @book.title %></td>
 			<td><%= @book.body %></td>
 
-			<% if @user.id == current_user.id %>
+			<% if @book.user.id == current_user.id %>
 
 			<td><%= link_to "Edit", edit_book_path(@book) %></td>
 			<td><%= link_to "Destroy", book_path(@book),method: :delete %></td>
@@ -33,27 +37,27 @@
 
 <h1>User info</h1>
 
-<%= attachment_image_tag @user, :profile_image, format: 'jpg', size: "100x100", fallback: "no_image.jpg" %>
+<%= attachment_image_tag @book.user, :profile_image, format: 'jpg', size: "100x100", fallback: "no_image.jpg" %>
 
-<p>name : <%= @user.name %></p>
+<p>name : <%= @book.user.name %></p>
 
-<p>introduction : <%= @user.introduction %></p>
+<p>introduction : <%= @book.user.introduction %></p>
 
-<% if @user.id == current_user.id %>
+<% if @book.user.id == current_user.id %>
 <p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
 <% end %>
 
 <h3>New book</h3>
 	<!-- form_for -->
-<%= form_for(@book) do |f| %>
+<%= form_for(@new_book) do |f| %>
 <!-- errors message -->
-   <% if @book.errors.any? %>
+   <% if @new_book.errors.any? %>
   <div class="alert">
   	<div class="count">
-  		<%= @book.errors.count %>errors prohibited this book from being saved:
+  		<%= @new_book.errors.count %>errors prohibited this book from being saved:
   	</div>
     <ul>
-      <% @book.errors.full_messages.each do |message| %>
+      <% @new_book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
