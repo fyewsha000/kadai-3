@@ -1,50 +1,33 @@
+<div class="container">
 <% if flash[:notice] %>
 	<div class= "flash">
 		<%= flash[:notice] %>
 	</div>
 <% end %>
+<div class="row">
 <br>
 <br>
 
-<h1>Book detail</h1>
-<table>
-	<thead>
-		<tr>
-			<th width="70"></th>
-			<th width="150">Title</th>
-			<th width="500">Opinion</th>
-			<th colspan = "3"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-            <td><%= attachment_image_tag @book.user, :profile_image, format: 'jpg', size: "40x40", fallback: "no_image.jpg" %>
-                <%= link_to @book.user.name, user_path(@book.user.id) %>
-             </td>
-            <td><%= @book.title %></td>
-			<td><%= @book.body %></td>
-
-			<% if @book.user.id == current_user.id %>
-
-			<td><%= link_to "Edit", edit_book_path(@book) %></td>
-			<td><%= link_to "Destroy", book_path(@book),method: :delete %></td>
-
-			<% end %>
-		</tr>
-	</tbody>
-</table>
-
-
+<div class="col-xs-3">
 <h1>User info</h1>
 
 <%= attachment_image_tag @book.user, :profile_image, format: 'jpg', size: "100x100", fallback: "no_image.jpg" %>
-
-<p>name : <%= @book.user.name %></p>
-
-<p>introduction : <%= @book.user.introduction %></p>
-
+<table class="table">
+	    <tbody>
+		   <tr>
+			  <th width="15">name</th>
+			  <th width="30"><%= current_user.name %></th>
+		   </tr>
+		   <tr>
+			  <th width="15">introduction</th>
+			  <th width="30"><%= current_user.introduction %></th>
+		   </tr>
+	     </tbody>
+        </table>
 <% if @book.user.id == current_user.id %>
-<p><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></p>
+    <%= link_to edit_user_path(current_user.id),class: "btn btn-default btn-block" do %>
+       <span class="glyphicon glyphicon-wrench" aria-hidden="true" style="color:black"></span>
+    <% end %>
 <% end %>
 
 <h3>New book</h3>
@@ -70,5 +53,37 @@
 	 <%= f.text_area :body %>
 	 <br>
 	 <br>
-	 <%= f.submit 'Create Book' %>
+	 <%= f.submit 'Create Book',class: "btn btn-primary btn-block" %>
 <% end %>
+          </div>
+<div class="col-xs-9">
+<h1>Book detail</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th width="70"></th>
+			<th width="150">Title</th>
+			<th width="500">Opinion</th>
+			<th colspan = "3"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+            <td><%= attachment_image_tag @book.user, :profile_image, format: 'jpg', size: "40x40", fallback: "no_image.jpg" %>
+                <%= link_to @book.user.name, user_path(@book.user.id) %>
+             </td>
+            <td><%= @book.title %></td>
+			<td><%= @book.body %></td>
+
+			<% if @book.user.id == current_user.id %>
+
+			<td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
+			<td><%= link_to "Destroy", book_path(@book),method: :delete, class: "btn btn-danger" %></td>
+
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+</div>
+     </div>
+</div>

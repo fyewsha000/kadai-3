@@ -13,5 +13,36 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprokets";
-@import "bootstarp";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+span {
+	font-size: 25px;
+	color: white;
+}
+
+.nav a {
+    color: gray;
+}
+
+.nav a:hover {
+    color: white;
+}
+
+.count{
+	font-size: 25px;
+	color: tomato;
+}
+
+.alert{
+	font-size: 15px;
+	color: tomato;
+}
+
