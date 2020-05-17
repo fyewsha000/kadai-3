@@ -15,7 +15,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
+    if @user.id == current_user.id
+    else
+       redirect_to user_path(current_user)
+       @book = Book.new
+       @books = @user.books.page(params[:page]).reverse_order
+    end
   end
 
 
